@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JPSEMWebApp.Data;
 using JPSEMWebApp.Models;
+using JPSEMWebApp.ViewModels;
 
 namespace JPSEMWebApp.Controllers
 {
@@ -20,11 +21,28 @@ namespace JPSEMWebApp.Controllers
         }
 
         // GET: AirfibrePackages
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( int page = 1, int pageSize = 4)
         {
-              return _context.AirfibrePackages != null ? 
-                          View(await _context.AirfibrePackages.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.AirfibrePackages'  is null.");
+            var totalItems = await _context.AirfibrePackages.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var airfibrePackages = await _context.AirfibrePackages
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var model = new PaginatedAirfibrePackagesViewModel
+            {
+                AirfibrePackages = airfibrePackages,
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalPages = totalPages
+            };
+
+            return View(model);
+              //return _context.AirfibrePackages != null ? 
+              //            View(await _context.AirfibrePackages.ToListAsync()) :
+              //            Problem("Entity set 'ApplicationDbContext.AirfibrePackages'  is null.");
         }
 
         // GET: AirfibrePackages/Details/5

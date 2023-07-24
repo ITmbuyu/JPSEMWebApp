@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JPSEMWebApp.Models.AirfibrePackage>
+﻿@model JPSEMWebApp.ViewModels.PaginatedAirfibrePackagesViewModel
 @using Microsoft.AspNetCore.Identity
 @using System.Globalization
 @inject SignInManager<IdentityUser> SignInManager
@@ -49,7 +49,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.AirfibrePackages)
             {
                 <tr>
                     <td>
@@ -85,7 +85,7 @@
             <h5 class="title-small text-center"> Our Irresistible Pricing Plans</h5>
             <h3 class="title-big text-center mb-sm-5 mb-4">Affordable Solutions Tailored Just for You</h3>
             <div class="row">
-                @foreach (var item in Model)
+                @foreach (var item in Model.AirfibrePackages)
                 {
                     <div class="col-lg-3 col-md-6 price-main-info mt-lg-0 mt-4">
                         <div class="price-inner card box-shadow">
@@ -121,7 +121,7 @@
                     </div>
                 }
             </div>
-            @*<div class="text-center mt-4">
+            <div class="text-center mt-4">
             @if (Model.TotalPages > 1)
             {
             for (int i = 1; i <= Model.TotalPages; i++)
@@ -130,7 +130,7 @@
             }
             }
             </div>
-            </div>*@
+            </div>
         </div>
 </section>
 

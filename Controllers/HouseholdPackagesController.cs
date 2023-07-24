@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JPSEMWebApp.Data;
 using JPSEMWebApp.Models;
+using JPSEMWebApp.ViewModels;
 
 namespace JPSEMWebApp.Controllers
 {
@@ -20,11 +21,29 @@ namespace JPSEMWebApp.Controllers
         }
 
         // GET: HouseholdPackages
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( int page = 1, int pageSize = 4)
         {
-              return _context.HouseholdPackages != null ? 
-                          View(await _context.HouseholdPackages.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.HouseholdPackages'  is null.");
+            var totalItems = await _context.HouseholdPackages.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var householdPackages = await _context.HouseholdPackages
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var model = new PaginatedHouseHoldViewModel
+            {
+                HouseholdPackages = householdPackages,
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalPages = totalPages
+            };
+
+            return View(model);
+
+              //return _context.HouseholdPackages != null ? 
+              //            View(await _context.HouseholdPackages.ToListAsync()) :
+              //            Problem("Entity set 'ApplicationDbContext.HouseholdPackages'  is null.");
         }
 
         // GET: HouseholdPackages/Details/5

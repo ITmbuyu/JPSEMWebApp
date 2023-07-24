@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JPSEMWebApp.Data;
 using JPSEMWebApp.Models;
+using JPSEMWebApp.ViewModels;
 
 namespace JPSEMWebApp.Controllers
 {
@@ -20,11 +21,29 @@ namespace JPSEMWebApp.Controllers
         }
 
         // GET: LtePackages
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( int page = 1, int pageSize = 4)
         {
-              return _context.LtePackages != null ? 
-                          View(await _context.LtePackages.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.LtePackages'  is null.");
+            var totalItems = await _context.LtePackages.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var ltePackages = await _context.LtePackages
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var model = new PaginatedLTEPackagesViewModel
+            {
+                LtePackages = ltePackages,
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalPages = totalPages
+            };
+
+            return View(model);
+
+              //return _context.LtePackages != null ? 
+              //            View(await _context.LtePackages.ToListAsync()) :
+              //            Problem("Entity set 'ApplicationDbContext.LtePackages'  is null.");
         }
 
         // GET: LtePackages/Details/5

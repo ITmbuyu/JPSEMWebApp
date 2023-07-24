@@ -1,0 +1,245 @@
+﻿<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-services py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h2 class="title">Our services</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> services page</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="w3l-content-mid py-5">
+  <style>
+      .w3l-content-mid {
+          position: relative;
+      }
+
+      .w3l-content-mid video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: -1;
+      }
+
+      .card {
+          width: 100%;
+          height: 500px; /* Set a fixed height for each card */
+          overflow: hidden; /* Hide any content that exceeds the height */
+          border-radius: 10px;
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease-in-out;
+        }
+        
+        .card:hover {
+          transform: translateY(-10px);
+box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .card:hover img {
+          transform: scale(1.2);
+        }
+
+         .w3l-content-mid .text-container {
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          color: #fff;
+          padding: 50px 0;
+      }
+
+      .w3l-content-mid h3.title-w3l {
+          animation: bounceIn 1s;
+          font-size: 3rem;
+          text-align: center;
+      }
+
+     
+      
+  </style>
+
+
+    <div class="service-section py-5" style="margin-top: -100px;">
+        <div class="text-container">
+            <h3 class="title-w3l" style="animation: bounce 2s infinite;">
+                JPSEM Packages
+            </h3>
+        </div>
+
+        <div class="container py-md-5 py-4 HomePageImageServices">
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-6 item">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative border-0">
+                            <a href="@Url.Action("Index", "HouseholdPackages")">
+                                <img class="d-block img-responsive"
+                                     src="~/assets/images/household.jpg"
+                                     alt="card-image" style="width: 100%; height: 250px; object-fit: cover;">
+                            </a>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="card-body service-details" style="text-align: center;">
+                            <a href="@Url.Action("Index", "HouseholdPackages")">
+                                <span class="label-style" style="color: #555; font-size: 1.58rem; font-weight: 600;">
+                                    Building
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 item">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative border-0">
+                            <a href="@Url.Action("Index", "BusinessPackages")">
+                                <img class="d-block img-responsive"
+                                     src="~/assets/images/business.jpg"
+                                     alt="card-image" style="width: 100%; height: 250px; object-fit: cover;">
+                            </a>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="card-body service-details" style="text-align: center;">
+                            <a href="@Url.Action("Index", "BusinessPackages")">
+                                <span class="label-style" style="color: #555; font-size: 1.58rem; font-weight: 600;">
+                                    Business Package
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 item">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative border-0">
+                            <a href="@Url.Action("Index", "LtePackages")">
+                                <img class="d-block img-responsive"
+                                     src="~/assets/images/lte.jpg"
+                                     alt="card-image" style="width: 100%; height: 250px; object-fit: cover;">
+                            </a>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="card-body service-details" style="text-align: center;">
+                            <a href="@Url.Action("Index", "LtePackages")">
+                                <span class="label-style" style="color: #555; font-size: 1.58rem; font-weight: 600;">
+                                    LTE
+                                </span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 item">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative border-0">
+                            <a href="@Url.Action("Index", "AirfibrePackages")">
+                                <img class="d-block img-responsive"
+                                     src="~/assets/images/airfibre.jpg"
+                                     alt="card-image" style="width: 100%; height: 250px; object-fit: cover;">
+                            </a>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="card-body service-details" style="text-align: center;">
+                            <a href="@Url.Action("Index", "AirfibrePackages")">
+                                <span class="label-style" style="color: #555; font-size: 1.58rem; font-weight: 600;">
+                                    AirFibre
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+</section>
+<!-- services page pricing block -->
+<section class="w3l-content py-5" id="features">
+    <div class="content-4-main py-lg-5 py-md-4 py-2">
+        <div class="container">
+            <div class="content-info-in row">
+                <div class="content-left col-lg-6">
+                    <img src="~/assets/images/services.jpg" class="img-fluid radius-image" alt="">
+                </div>
+                <div class="content-right col-lg-6 pl-lg-4 mt-lg-0 mt-5 align-self">
+                    <div class="row content4-right-grids mb-md-5 mb-5">
+                        <div class="col-2 content4-right-icon">
+                            <div class="content4-icon">
+                                <h4><strong>01.</strong></h4>
+                            </div>
+                        </div>
+                        <div class="col-10 content4-right-info">
+                            <h6><a href="#url">Initial Planning</a></h6>
+                            <p>Our team will develop detailed design and technical specifications.</p>
+                        </div>
+                    </div>
+                    <div class="row content4-right-grids mb-md-5 mb-5">
+                        <div class="col-2 content4-right-icon">
+                            <div class="content4-icon">
+                                <h4><strong>02.</strong></h4>
+                            </div>
+                        </div>
+                        <div class="col-10 content4-right-info">
+                            <h6><a href="#url"> Development</a></h6>
+                            <p>The technical side of the telecommunications development process begins. </p>
+                        </div>
+                    </div>
+                    <div class="row content4-right-grids mb-md-5 mb-5">
+                        <div class="col-2 content4-right-icon">
+                            <div class="content4-icon">
+                                <h4><strong>03.</strong></h4>
+                            </div>
+                        </div>
+                        <div class="col-10 content4-right-info">
+                            <h6><a href="#url"> Testing</a></h6>
+                            <p>Quality assurance will test the reliability of your site.</p>
+                        </div>
+                    </div>
+                    <div class="row content4-right-grids">
+                        <div class="col-2 content4-right-icon">
+                            <div class="content4-icon">
+                                <h4><strong>04.</strong></h4>
+                            </div>
+                        </div>
+                        <div class="col-10 content4-right-info">
+                            <p> </p>
+                            <h6><a href="#url"> Deployment & Optimisation</a></h6>
+                            <p>Deployment of fibre service to your building. Fibre in the building will be supported and maintained on a monthly basis. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="w3l-bottom1 py-5">
+    <div class="container py-md-5 py-sm-4 py-2">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="bottom-info">
+                    <div class="header-section">
+                        <h3 class="title-big">Start improving your Business today!</h3>
+                        <p class="mt-3 pr-lg-5">
+                            Our client's satisfaction is what keeps our doors open,
+                            so helping you stand out is the best way to ensure that you are 100% satisfied.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 align-self text-lg-right">
+                <a href="#learn" class="btn btn-style btn-outline-dark mt-lg-0 mt-md-5 mt-4 mr-2">Learn More </a>
+                <a href="@Url.Action("Contact", "Home")" class="btn btn-style btn-primary mt-lg-0 mt-md-5 mt-4">Contact us</a>
+            </div>
+        </div>
+</section>

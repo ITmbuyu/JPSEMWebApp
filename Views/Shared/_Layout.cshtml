@@ -1,0 +1,395 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no" />
+    <title>@ViewData["Title"] - JPSEM NETWORKERS</title>
+   @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/JPSEMWebApp.styles.css" asp-append-version="true" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/favicon-16x16.png">
+    <script src="~/assets/js/keyframes.js"></script>
+    
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/assets/css/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+   @* <script async src="https://www.googletagmanager.com/gtag/js?id=G-6B1BF62SX8">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-6B1BF62SX8');
+    </script>*@
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+                <div>
+                    <h1>
+                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                            <span>
+                                <a class="navbar-brand" href="#@Url.Action("Index", "Home")">
+                                    <img src="~/assets/images/logo.png" alt="Your logo" title="Your logo" style="height:50px;" />
+                                </a>
+                            </span>
+                        </a>
+                    </h1>
+                    <!-- if logo is image enable this  -->
+                </div>
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                        data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        <ul class="navbar-nav mx-lg-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" style="color:black" style="color:black" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-area="" asp-controller="Employees" asp-action="Index">Add Employees</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-area="" asp-controller="BusinessPackages" asp-action="Index">Business Packs</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-area="" asp-controller="HouseholdPackages" asp-action="Index">Building Packs</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-controller="LtePackages" asp-action="Index">Lte Packs</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-controller="Routers" asp-action="Index">Router Packs</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-controller="AirfibrePackages" asp-action="Index">Airfibre</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-controller="ServiceNotices" asp-action="Index">Notices</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <partial name="_LoginPartial" />
+                            </li>
+                        </ul>
+                    }
+                    @*@if (SignInManager.IsSignedIn(User) && User.IsInRole("User"))
+                    {
+                        <ul class="navbar-nav mx-lg-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" style="color:black" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <a class="nav-link" style="color:black" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
+                            </li>
+                            <li class="nav-item @@services__active">
+                                <partial name="_LoginPartial" />
+                            </li>
+                        </ul>
+                    }*@
+                    else if (!SignInManager.IsSignedIn(User))
+                    {
+                    <ul class="navbar-nav mx-lg-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" style="color:black" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item @@services__active">
+                            <a class="nav-link" style="color:black" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item @@services__active">
+                            <a class="nav-link" style="color:black" asp-area="" asp-controller="Home" asp-action="Services">Services</a>
+                        </li>
+                        <li class="nav-item @@services__active">
+                            <a class="nav-link" style="color:black" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
+                        </li>
+                        @*<li class="nav-item @@services__active">
+                            <partial name="_LoginPartial" />
+                        </li>*@
+                    </ul>
+                    }
+                </div>
+                @*<!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->*@
+            </nav>
+        </div>  
+    </header>
+    @RenderBody()
+
+    <footer>
+        <section class="w3l-footer-29-main">
+            <div class="footer-29 py-5">
+                <div class="container py-lg-4">
+                    <div class="row footer-top-29">
+                        <div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-1 pr-lg-5">
+                            <div class="footer-logo mb-4">
+                                <a class="navbar-brand" href="@Url.Action("Index", "Home")"> JPSEM NETWORKERS</a>
+                            </div>
+                            <p>
+                                In an era of constant technology change, we take pride in providing the right solution to meet our clients' needs.
+                                The Building Smart Fibre Solutions Group is a fast-growing and highly innovative service provider.
+                            </p>
+                            <div class="main-social-footer-29 mt-4">
+                                <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                                <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                                <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                                <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-5 col-6 footer-list-29 footer-2 mt-sm-0 mt-5">
+
+                            <ul>
+                                <h6 class="footer-title-29">Useful Links</h6>
+                                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="services.html">Services</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")">Contact us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-4 mt-lg-0 mt-5">
+                            <h6 class="footer-title-29">Contact Info </h6>
+                            <p>Address : 79 Burlington Drive Burlington Queensburgh 4093</p>
+                            <p class="mt-2">Phone : <a href="tel:0814428981">+(27) 81 442 8981</a></p>
+                            <p class="mt-2">Phone : <a href="tel:0814428981">+(27) 74 665 8873</a></p>
+                            <p class="mt-2">Email : <a href="mailto:info@jpsemnetworkers.co.za">info@jpsemnetworkers.co.za</a></p>
+                            <p class="mt-2">Support : <a href="mailto:support@jpsemnworkers.co.za">support@jpsemnworkers.co.za</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- copyright -->
+            <section class="w3l-copyright text-center">
+                <div class="container">
+                    <p class="copy-footer-29">2017 JPSEM NETWORKERS. All rights reserved.</p>
+                </div>
+
+                <!-- move top -->
+                <button onclick="topFunction()" id="movetop" title="Go to top">
+                    &#10548;
+                </button>
+                <script>
+                    // When the user scrolls down 20px from the top of the document, show the button
+                    window.onscroll = function () {
+                        scrollFunction()
+                    };
+
+                    function scrollFunction() {
+                        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                            document.getElementById("movetop").style.display = "block";
+                        } else {
+                            document.getElementById("movetop").style.display = "none";
+                        }
+                    }
+
+                    // When the user clicks on the button, scroll to the top of the document
+                    function topFunction() {
+                        document.body.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+                    }
+                </script>
+                <!-- /move top -->
+            </section>
+            <!-- //copyright -->
+        </section>
+    </footer>
+
+    <!-- Template JavaScript -->
+    <script src="~/assets/js/theme-change.js"></script><!-- theme switch js (light and dark)-->
+
+    <script src="~/assets/js/jquery-3.3.1.min.js"></script><!-- default jQuery -->
+
+    <script src="~/assets/js/circles.js"></script>
+
+    <!-- stats number counter-->
+    <script src="~/assets/js/jquery.waypoints.min.js"></script>
+    <script src="~/assets/js/jquery.countup.js"></script>
+    <script>
+        $('.counter').countUp();
+    </script>
+    <!-- //stats number counter -->
+    <!-- owlcarousel -->
+    <script src="~/assets/js/owl.carousel.js"></script>
+
+    <!-- script for tesimonials carousel slider -->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo1").owlCarousel({
+                loop: true,
+                nav: false,
+                margin: 50,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    736: {
+                        items: 1,
+                        nav: false
+                    },
+                    991: {
+                        items: 2,
+                        margin: 30,
+                        nav: false
+                    },
+                    1080: {
+                        items: 2,
+                        nav: false
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //script for tesimonials carousel slider -->
+    <!-- script for teams -->
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 0,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    400: {
+                        items: 2,
+                        nav: true,
+                        margin: 20
+                    },
+                    768: {
+                        items: 3,
+                        nav: true,
+                        margin: 20
+                    },
+                    1000: {
+                        items: 4,
+                        nav: true,
+                        loop: true,
+                        margin: 25
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //script for teams-->
+    <!-- video popup -->
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+    <!-- //video popup -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- disable body scroll which navbar is in active -->
+    <!--/MENU-JS-->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!--//MENU-JS-->
+    <!-- bootstrap js -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>*@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

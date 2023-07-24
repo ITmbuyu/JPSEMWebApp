@@ -1,0 +1,146 @@
+﻿@model JPSEMWebApp.ViewModels.PaginatedBusinessPackagesViewModel
+@using Microsoft.AspNetCore.Identity
+@using System.Globalization
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h2 class="title">About us</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Business Packages</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Speed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Capacity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RedundancyPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InstallationPrice)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.BusinessPackages)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Speed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capacity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RedundancyPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InstallationPrice)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.BusinessPackageId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.BusinessPackageId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.BusinessPackageId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+<!-- services page pricing block -->
+<section class="w3l-pricing">
+    <div class="py-5" id="pricing">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <h5 class="title-small text-center"> Our Irresistible Pricing Plans</h5>
+            <h3 class="title-big text-center mb-sm-5 mb-4">Affordable Solutions Tailored Just for You</h3>
+            <div class="row">
+                @foreach (var item in Model.BusinessPackages)
+                {
+                    <div class="col-lg-3 col-md-6 price-main-info mt-lg-0 mt-4">
+                        <div class="price-inner card box-shadow">
+                            <div class="card-body">
+                                <h4 class="mb-3">Package @item.BusinessPackageId</h4>
+                                <h5 class="card-title pricing-card-title">
+                                    <span class="align-top">@item.Price.ToString("C", new CultureInfo("en-ZA")) <span class="align">pm</span></span>
+                                </h5>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>
+                                        <h4>Description</h4>
+                                        <p>@item.Description</p>
+                                    </li>
+                                    <li>
+                                        <h4>Speed</h4>
+                                        <p>@item.Speed mbps</p>
+                                    </li>
+                                    <li>
+                                        <h4>Capacity</h4>
+                                        <p>@item.Capacity</p>
+                                    </li>
+                                    <li>
+                                        <h4>Redundancy Price</h4>
+                                        <p>@item.RedundancyPrice.ToString("C", new CultureInfo("en-ZA"))</p>
+                                    </li>
+                                    <li>
+                                        <h4>Installation Price</h4>
+                                        <p>@item.InstallationPrice.ToString("C", new CultureInfo("en-ZA"))</p>
+                                    </li>
+                                </ul>
+                                <div class="read-more mt-lg-5 mt-4">
+                                    <a href="@Url.Action("Contact", "Home")" class="btn btn-style btn-outline-primary">Enquire Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="text-center mt-4">
+                @if (Model.TotalPages > 1)
+                {
+                    for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <a href="?page=@i" class="btn btn-style btn-outline-primary">@i</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

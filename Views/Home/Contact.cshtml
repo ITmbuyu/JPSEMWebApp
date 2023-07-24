@@ -1,0 +1,91 @@
+﻿@model JPSEMWebApp.Models.Home
+
+<!--/header-->
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h2 class="title">Contact us</h2>
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Pages</li>
+                <li class="active"><span class="fa fa-arrow-right mx-2" aria-hidden="true"></span> Contact page</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- contact block -->
+<!-- contact1 -->
+<section class="w3l-contact-1 py-5" id="contact">
+    <div class="contacts-9 py-lg-5 py-md-4">
+        <div class="container">
+            <div class="row contact-view">
+                <div class="col-lg-7 ">
+                    <div class="map-content-9">
+                        <h5 class="mb-4">Please feel free to contact us</h5>
+                        <form action="https://formsubmit.co/info@jpsemnetworkers.co.za" method="POST">
+                            <div class="twice-two">
+                                <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="Name"
+                                       required="">
+                                <input type="email" class="form-control" name="w3lSender" id="w3lSender"
+                                       placeholder="Email" required="">
+                            </div>
+                            <div class="twice">
+                                <input type="text" class="form-control" name="w3lSubject" id="w3lSubject"
+                                       placeholder="Subject" required="">
+                            </div>
+                            <textarea name="w3lMessage" class="form-control" id="w3lMessage" placeholder="Message"
+                                      required=""></textarea>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary btn-style mt-4">Send Message</button>
+                            </div>
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://jpsemnetworkers.co.za/Home/thankyou">
+                     
+                        </form>
+
+                       
+                    </div>
+                </div>
+                <div class="col-lg-5 cont-details align-self mt-lg-0 mt-5">
+                    <h5 class="mb-lg-4 mb-2">Contact information</h5>
+                    <p class="mb-sm-4 mb-4"> We guarantee that you’ll be able to have any issue resolved within 24 hours.</p>
+                    <div class="cont-top">
+                        <div class="cont-left text-center">
+                            <span class="fa fa-phone text-primary"></span>
+                        </div>
+                        <div class="cont-right">
+                            <h6>Phone number</h6>
+                            <p><a href="tel:+(27) 814428981">+(27) 81 442 8981</a></p>
+                        </div>
+                    </div>
+                    <div class="cont-top margin-up">
+                        <div class="cont-left text-center">
+                            <span class="fa fa-envelope-o text-primary"></span>
+                        </div>
+                        <div class="cont-right">
+                            <h6>Send Email</h6>
+                            <p><a href="info@jpsemnetworkers.co.za" class="mail">info@jpsemnetworkers.co.za</a></p>
+                        </div>
+                    </div><div class="cont-top margin-up">
+                        <div class="cont-left text-center">
+                            <span class="fa fa-map-marker text-primary"></span>
+                        </div>
+                        <div class="cont-right">
+                            <h6>Company Address</h6>
+                            <p class="pr-lg-5">79 Burlington Drive Burlington Queensburgh 4093</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- /contact1 -->
+<div class="map-iframe">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3458.8206328848732!2d30.890442174926264!3d-29.898268524512137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef65534876bc84b%3A0xb74e5e6c1891b9d2!2s79%20Burlington%20Dr%2C%20Burlington%20Heights%2C%20Queensburgh%2C%204093!5e0!3m2!1sen!2sza!4v1688467495715!5m2!1sen!2sza"
+            width="100%" height="400" frameborder="0" style="border: 0px;" allowfullscreen=""></iframe>
+</div>
+<!-- //contact block -->
